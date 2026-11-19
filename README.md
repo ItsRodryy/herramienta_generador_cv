@@ -2,7 +2,15 @@
 
 Generador **local** de currículums en español e inglés, con una única plantilla inicial: cabecera gris de esquinas suaves, fotografía circular con borde ondulado gris claro, iconos lineales discretos, separadores horizontales y diseño de una columna. Produce **DOCX editable y PDF** a partir de datos estructurados. La conversación, traducción, decisiones y revisión visual se realizan con **Codex o Claude Code en VS Code**; el programa NO llama a ningún proveedor de IA ni necesita claves API.
 
-## Inicio rápido (Windows 10/11)
+## Uso con IA
+
+La forma principal es pedir **crear-cv** o **actualizar-cv** en la carpeta de esta herramienta. Las órdenes son idénticas en `.agents/skills/` y `.claude/skills/`. El asistente lee el caso indicado y hace un cuestionario corto, numerado, con cinco preguntas como máximo por mensaje y decisiones de sí/no o elegir; reutiliza lo ya confirmado.
+
+Los casos y sus originales son privados. El contenido debe ser veraz, revisarse en español e inglés y pasar la revisión de confidencialidad. No se inventa experiencia ni se resume para encajar sin permiso. Se muestran todas las páginas antes del cierre y se pide conformidad visual. El programa no tiene una conexión autónoma a IA y no envía ni publica documentos.
+
+## Uso con comandos
+
+### Inicio rápido (Windows 10/11)
 
 1. Descomprime el ZIP en una carpeta NUEVA y ábrela en VS Code. Conserva tus casos privados por separado; no los borres al sustituir versiones.
 2. Instala por tu cuenta Python 3.10+ y LibreOffice, y utiliza un entorno propio. Este programa no instala dependencias automáticamente.
@@ -18,7 +26,7 @@ Para macOS/Linux: `python3 -m venv .venv`, `source .venv/bin/activate`, `python 
 
 3. Abre `AGENTS.md` con Codex o `CLAUDE.md` con Claude Code. Indica qué CV PDF/DOCX quieres adaptar y pide que te haga las preguntas del flujo. El asistente abrirá los PNG generados y te preguntará qué cambiar.
 
-## Flujo manual
+### Flujo manual
 
 ```sh
 python -m generador_cv nuevo casos/demostracion
@@ -42,17 +50,17 @@ python -m generador_cv cerrar --caso casos/demostracion --revisor "Usuario" --co
 
 Generar PDF requiere LibreOffice o Microsoft Word (Windows). Indica `CV_SOFFICE` si el ejecutable está fuera de las ubicaciones detectadas. El archivo `ejemplos/caso_ficticio` es totalmente ficticio; su fotografía es una ilustración geométrica, NO de una persona real.
 
-## Qué se puede modificar
+### Qué se puede modificar
 
 La única plantilla editable es `estilos/minimalista_onda.json`, cuyos parámetros se aplican desde `config.json` (`visual`) o mediante `configurar visual.<parámetro> <valor>`. Se pueden ajustar márgenes, fuentes y tamaños, proporciones, fondo, radio de cabecera, foto, intensidad y color de la onda, iconos, espaciados y separadores. La sección se puede ocultar, renombrar o reordenar editando los `blocks` bajo supervisión del asistente. Detalles: `docs/ESTILO.md`.
 
 El número de páginas se elige de **1 a 4**, sin rellenar ni resumir automáticamente. Si no cabe, se bloquea y pide revisión. Los PDF se generan del mismo DOCX nativo. Los enlaces son clicables; el texto es editable en Word. La paginación puede variar según sistema, fuente y versión de Word: revisa el PDF en el equipo final.
 
-## Privacidad y publicación
+### Privacidad y publicación
 
 **No publiques el ZIP original que incluía `.venv`, documentos personales y salidas reales.** Esta distribución solo contiene código, documentación, pruebas y un ejemplo ficticio; no incluye tu fotografía ni CV. `.gitignore` excluye `casos/` y `entrada/`, pero **no limpia archivos que ya hayan sido añadidos a Git**. Inspecciona `git status`, cada archivo y el historial antes de publicar. El detector de confidencialidad es orientativo y no sustituye aprobación de la empresa ni asesoría legal.
 
-## Pruebas
+### Pruebas
 
 ```sh
 python -m unittest discover -s tests -p 'test_*.py' -v
