@@ -1,6 +1,6 @@
 {
     "schema_version":  2,
-    "template_version":  "2.4.0",
+    "template_version":  "2.7.0",
     "proyecto":  {
                      "nombre":  "Generador CV",
                      "descripcion":  "Generador local de currículums ES/EN en DOCX y PDF, con plantilla minimalista_onda y revisión conversacional de Codex o Claude; no llama a proveedores de IA.",
